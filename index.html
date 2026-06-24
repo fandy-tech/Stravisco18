@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRAVISCO — Alumni SMPIT Ar-Rahmah Makassar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============ RESET & AR-RAHMAH DESIGN SYSTEM ============ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #2AA8E0;
+            --dark: #1A8DC0;
+            --deeper: #0F6A94;
+            --light: #EBF8FF;
+            --accent: #C9A84C;
+            --accent-light: #F5EDD4;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --text-muted: #94A3B8;
+            --border: #E2E8F0;
+            --white: #FFFFFF;
+            --bg: #F8FAFC;
+            --shadow: 0 4px 24px rgba(42, 168, 224, 0.10);
+            --shadow-lg: 0 12px 48px rgba(42, 168, 224, 0.15);
+            --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.85rem 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .navbar-logo span {
+            color: var(--accent);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+
+        .navbar-menu a:hover { color: var(--primary); }
+
+        .navbar-menu .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 7px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .navbar-menu .nav-cta:hover {
+            background: var(--dark);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--white);
+                padding: 0.5rem 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+
+            .navbar-menu.active { display: flex; }
+
+            .navbar-menu li { width: 100%; }
+
+            .navbar-menu a {
+                display: block;
+                padding: 0.85rem 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .navbar-menu .nav-cta {
+                margin: 0.75rem 24px;
+                text-align: center;
+                display: block;
+            }
+
+            .hamburger { display: flex; }
+        }
+
+        /* ============ HERO — STRAVISCO IDENTITY ============ */
+        .hero {
+            background: linear-gradient(160deg, var(--primary) 0%, var(--deeper) 60%, #0A4F73 100%);
+            color: var(--white);
+            padding: 100px 24px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(201, 168, 76, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* Geometric pattern — STRAVISCO identity */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(30deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(-30deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 35px;
+            animation: heroShift 30s linear infinite;
+        }
+
+        @keyframes heroShift {
+            to { transform: translate(60px, 35px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeDown 0.6s ease both;
+        }
+
+        .hero-badge::before {
+            content: '✦';
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+            animation: fadeDown 0.7s ease 0.1s both;
+        }
+
+        .hero-title .stravisco-text {
+            display: block;
+            font-family: var(--font-body);
+            font-style: normal;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 0.6rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin: 1.2rem 0 2.2rem;
+            opacity: 0.85;
+            line-height: 1.7;
+            animation: fadeUp 0.7s ease 0.25s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeUp 0.7s ease 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: var(--font-body);
+        }
+
+        .btn-gold {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background: #B89840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 70px 20px 90px; }
+            .hero-title { font-size: 2.6rem; }
+            .hero-title .stravisco-text { font-size: 0.9rem; }
+        }
+
+        /* ============ SECTIONS — SHARED ============ */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 2.4rem;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 0.6rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-alt { background: var(--bg); }
+
+        @media (max-width: 600px) {
+            .section { padding: 56px 20px; }
+            .section-title { font-size: 1.8rem; }
+        }
+
+        /* ============ ABOUT ============ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.6rem;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============ GALLERY ============ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+        }
+
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
+        .gallery-img.loading {
+            background: var(--light);
+        }
+
+        @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
+
+        /* ============ LIGHTBOX ============ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: lbFade 0.25s ease;
+        }
+
+        @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 92%;
+            max-height: 92vh;
+        }
+
+        .lightbox-img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            animation: lbZoom 0.3s ease;
+        }
+
+        @keyframes lbZoom {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .lightbox-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .lightbox-controls:hover { background: rgba(0,0,0,0.7); }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(0,0,0,0.4);
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover { background: rgba(0,0,0,0.6); }
+        .lightbox-prev { left: 16px; }
+        .lightbox-next { right: 16px; }
+
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 0.92rem;
+        }
+
+        .lightbox-counter {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+        }
+
+        /* ============ ALBUMS ============ */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 7px 20px;
+            border: 1.5px solid var(--border);
+            background: var(--white);
+            color: var(--text-light);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: var(--font-body);
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        .filter-btn:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+
+        .album-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            aspect-ratio: 1;
+            transition: transform 0.25s;
+        }
+
+        .album-card:hover { transform: translateY(-4px); }
+
+        .album-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .album-card:hover .album-overlay { opacity: 1; }
+
+        .album-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .album-placeholder {
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 2.5rem;
+        }
+
+        @media (max-width: 900px) { .albums-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .albums-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; } }
+
+        /* ============ VIDEOS ============ */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            display: block;
+        }
+
+        .video-info { padding: 1.2rem; }
+
+        .video-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) { .videos-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .videos-grid { grid-template-columns: 1fr; } }
+
+        /* ============ YEARBOOK ============ */
+        .yearbook-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .yearbook-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .yearbook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .yearbook-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .yearbook-info { padding: 1.3rem; }
+
+        .yearbook-name {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .yearbook-kelas {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.8rem;
+        }
+
+        .yearbook-cita {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .yearbook-quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--accent);
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) { .yearbook-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .yearbook-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; } }
+
+        /* ============ KOMENTAR ============ */
+        .comment-form {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group { margin-bottom: 1.2rem; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text);
+            background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 168, 224, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .char-counter {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            text-align: right;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 12px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            font-family: var(--font-body);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: var(--dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-reset {
+            flex: 0.6;
+            padding: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--white);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            transition: border-color 0.2s;
+        }
+
+        .btn-reset:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .comments-list {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .comment-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-item:hover { box-shadow: var(--shadow-sm); }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .comment-meta { flex: 1; }
+
+        .comment-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .comment-kelas {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .comment-time {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .comment-text {
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            word-wrap: break-word;
+        }
+
+        .reply-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.82rem;
+            font-family: var(--font-body);
+            transition: color 0.2s;
+        }
+
+        .reply-btn:hover { color: var(--dark); }
+
+        .replies {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .reply-item {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .reply-item::before {
+            content: '↳';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .reply-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .reply-name {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .reply-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .reply-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .reply-form {
+            margin-top: 0.8rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .reply-form.active { display: block; }
+
+        .reply-form-group { margin-bottom: 0.8rem; }
+
+        .reply-form-group input,
+        .reply-form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            background: var(--white);
+        }
+
+        .reply-form-group input:focus,
+        .reply-form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .reply-form-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .reply-form-buttons button {
+            padding: 7px 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            font-family: var(--font-body);
+            transition: all 0.2s;
+        }
+
+        .reply-submit {
+            background: var(--primary);
+            color: white;
+        }
+
+        .reply-submit:hover { background: var(--dark); }
+
+        .reply-cancel {
+            background: var(--border);
+            color: var(--text-light);
+        }
+
+        .reply-cancel:hover { background: var(--text-muted); color: white; }
+
+        .no-comments {
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .comment-status {
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .comment-status.show { display: block; }
+        .comment-status.success { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+        .comment-status.error { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2.5rem 24px;
+        }
+
+        footer strong {
+            color: var(--white);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-sub {
+            font-size: 0.88rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            opacity: 0.5;
+            margin-top: 1rem;
+        }
+
+        /* ============ LOADING ============ */
+        .loading-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* FLOATING MUSIC PLAYER */
+        .floating-music {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 1500;
+            background: var(--white);
+            padding: 10px 16px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+        .floating-music:hover { transform: scale(1.03); }
+        .music-btn {
+            background: var(--primary);
+            border: none;
+            color: var(--white);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .music-btn:hover { background: var(--dark); }
+        .music-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+   
+        const CONFIG = {
+            NAMA_SEKOLAH: 'SMPIT Ar-Rahmah Makassar',
+            NAMA_ANGKATAN: 'STRAVISCO', 
+            TAHUN: '2025/2026',
+            SHEETS_ID: '1rIfoDW7DLVsjkY-tQz4UYi6tcGwf7o3kqp-DFX3OTF0',
+            // Ganti URL di bawah dengan tautan Web App Apps Script Anda yang baru dideploy
+            GAS_URL: 'https://script.google.com/macros/s/AKfycbxJo6wuJqo_oDHf2tp_7dhVTbcjXwnqhMSpypHTY1rkrgtiGndFEL2MsTbEhZjIM5lo/exec'
+        };
+    </script>
+
+    <div class="floating-music" id="musicContainer">
+        <button class="music-btn" id="playMusicBtn">▶</button>
+        <span class="music-text" id="musicStatusText">Putar Musik Memori 🎵</span>
+        <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-logo">Alumni <span>STRAVISCO</span></a>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#albums">Album</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#yearbook">Yearbook</a></li>
+                <li><a href="#komentar" class="nav-cta">💬 Sapa Alumni</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">SMPIT Ar-Rahmah Makassar</div>
+            <h1 class="hero-title">
+                Alumni
+                <span class="stravisco-text" id="heroAngkatan">S T R A V I S C O</span>
+            </h1>
+            <p class="hero-tagline" id="heroTagline">Selamat datang di halaman alumni kami — tempat kenangan bertemu kembali.</p>
+            <div class="hero-actions">
+                <a href="#yearbook" class="btn btn-gold">Lihat Yearbook</a>
+                <a href="#komentar" class="btn btn-outline">Sapa Sahabatmu</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="about">
+        <div class="section-header reveal">
+            <div class="section-tag">Mengenal Kami</div>
+            <h2 class="section-title">Tentang Angkatan</h2>
+        </div>
+        <div class="about-grid reveal">
+            <div class="about-text" id="aboutText">
+                <p>Memuat data...</p>
+            </div>
+            <div class="about-stats" id="aboutStats">
+                <div class="stat-card">
+                    <div class="stat-number" id="statSiswa">—</div>
+                    <div class="stat-label">Jumlah Siswa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statTahun">—</div>
+                    <div class="stat-label">Tahun Lulus</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="galeri">
+        <div class="section-header reveal">
+            <div class="section-tag">Momen Bersama</div>
+            <h2 class="section-title">Galeri Foto</h2>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="loading-wrap"><div class="loader"></div></div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div class="lightbox-controls" onclick="closeLightbox()">✕</div>
+            <div class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</div>
+            <div class="lightbox-nav lightbox-next" onclick="nextImage()">›</div>
+        </div>
+    </div>
+
+    <section class="section section-alt" id="albums">
+        <div class="section-header reveal">
+            <div class="section-tag">Dokumentasi</div>
+            <h2 class="section-title">Album Kegiatan</h2>
+        </div>
+        <div class="filter-bar" id="filterButtons"></div>
+        <div class="albums-grid" id="albumsGrid">
+            <div class="loading-wrap"><div class="loader"></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="video">
+        <div class="section-header reveal">
+            <div class="section-tag">Rekaman Kenangan</div>
+            <h2 class="section-title">Video Kegiatan</h2>
+        </div>
+        <div class="videos-grid" id="videosGrid">
+            <div class="loading-wrap"><div class="loader"></div></div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="yearbook">
+        <div class="section-header reveal">
+            <div class="section-tag">Wajah Angkatan</div>
+            <h2 class="section-title">Yearbook</h2>
+        </div>
+        <div class="yearbook-grid" id="yearbookGrid">
+            <div class="loading-wrap"><div class="loader"></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="komentar">
+        <div class="section-header reveal">
+            <div class="section-tag">Ruang Alumni</div>
+            <h2 class="section-title">Sapa Sahabatmu</h2>
+            <p class="section-sub">Sudah jadi alumni — tapi persahabatan tak pernah lulus.</p>
+        </div>
+
+        <form class="comment-form reveal" id="commentForm" onsubmit="submitComment(event)">
+            <div id="commentStatus" class="comment-status"></div>
+            <div class="form-group">
+                <label for="commentName">Nama</label>
+                <input type="text" id="commentName" placeholder="Nama kamu" required maxlength="60">
+            </div>
+            <div class="form-group">
+                <label for="commentKelas">Kelas / Angkatan</label>
+                <input type="text" id="commentKelas" placeholder="Misal: 9A / STRAVISCO 2026" required>
+            </div>
+            <div class="form-group">
+                <label for="commentText">Pesan</label>
+                <textarea id="commentText" placeholder="Tulis pesan untuk sahabatmu..." maxlength="500" required></textarea>
+                <div class="char-counter"><span id="charCount">0</span>/500</div>
+            </div>
+            <div class="form-buttons">
+                <button type="reset" class="btn-reset">Bersihkan</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Kirim Pesan</button>
+            </div>
+        </form>
+
+        <div class="comments-list" id="commentsList">
+            <div class="loading-wrap"><div class="loader"></div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand" id="footerSchool">SMPIT Ar-Rahmah Makassar</div>
+        <div class="footer-sub">Angkatan <strong id="footerYear">STRAVISCO 2025/2026</strong></div>
+        <div class="footer-copy">&copy; 2024–2026 STRAVISCO. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // ============ UTILITY ============
+        async function fetchSheetData(sheetName) {
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEETS_ID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+                const response = await fetch(url);
+                const text = await response.text();
+                const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+                if (!jsonMatch) throw new Error('Invalid response');
+                const data = JSON.parse(jsonMatch[1]);
+                const cols = data.table.cols.map(c => c.label);
+                const rows = data.table.rows.map(r => {
+                    const row = {};
+                    cols.forEach((col, i) => { row[col] = r.c[i]?.v || ''; });
+                    return row;
+                });
+                return { cols, rows };
+            } catch (error) {
+                console.error(`Error fetching ${sheetName}:`, error);
+                return { cols: [], rows: [] };
+            }
+        }
+
+        function escapeHtml(text) {
+            const d = document.createElement('div');
+            d.textContent = text;
+            return d.innerHTML;
+        }
+
+        function getTimeAgo(timestamp) {
+            const s = Math.floor((Date.now() - new Date(timestamp)) / 1000);
+            if (s < 60) return 'baru saja';
+            const m = Math.floor(s / 60);
+            if (m < 60) return `${m} menit lalu`;
+            const h = Math.floor(m / 60);
+            if (h < 24) return `${h} jam lalu`;
+            const d = Math.floor(h / 24);
+            if (d < 30) return `${d} hari lalu`;
+            return new Date(timestamp).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        // Navbar
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navbarMenu').classList.toggle('active');
+        });
+        document.querySelectorAll('.navbar-menu a').forEach(a => {
+            a.addEventListener('click', () => document.getElementById('navbarMenu').classList.remove('active'));
+        });
+
+        // Char counter
+        document.getElementById('commentText').addEventListener('input', e => {
+            document.getElementById('charCount').textContent = e.target.value.length;
+        });
+
+        // Music Player Controller
+        const audio = document.getElementById('bgMusic');
+        const playMusicBtn = document.getElementById('playMusicBtn');
+        const musicStatusText = document.getElementById('musicStatusText');
+        
+        playMusicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(e => console.log("Audio play blocked by browser:", e));
+                playMusicBtn.textContent = '⏸';
+                musicStatusText.textContent = 'Memutar Musik Kenangan...';
+                playMusicBtn.style.background = 'var(--accent)';
+            } else {
+                audio.pause();
+                playMusicBtn.textContent = '▶';
+                musicStatusText.textContent = 'Musik Dijeda';
+                playMusicBtn.style.background = 'var(--primary)';
+            }
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+        function observeReveals() {
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        }
+
+        // ============ ABOUT ============
+        async function loadAbout() {
+            const { rows } = await fetchSheetData('About');
+            if (!rows.length) return;
+            const d = rows[0];
+            const angkatan = d['angkatan_name'] || CONFIG.NAMA_ANGKATAN;
+            document.getElementById('heroTagline').textContent = d['tagline'] || 'Selamat datang di halaman alumni kami';
+            document.getElementById('statSiswa').textContent = d['jumlah_siswa'] || '—';
+            document.getElementById('statTahun').textContent = d['tahun_lulus'] || '—';
+            document.getElementById('aboutText').innerHTML = `<p>${d['deskripsi'] || ''}</p>`;
+            document.getElementById('footerSchool').textContent = CONFIG.NAMA_SEKOLAH;
+            document.getElementById('footerYear').textContent = `${angkatan} ${CONFIG.TAHUN}`;
+        }
+
+        // ============ GALERI ============
+        let galleryData = [];
+        let currentImageIndex = 0;
+
+        async function loadGaleri() {
+            const { rows } = await fetchSheetData('Galeri');
+            galleryData = rows.filter(r => r.photo_url && r.photo_url.startsWith('http'));
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+            if (!galleryData.length) { grid.innerHTML = '<div class="empty-state">Belum ada foto</div>'; return; }
+            galleryData.forEach((item, i) => {
+                const wrap = document.createElement('div');
+                wrap.className = 'gallery-item';
+                const img = document.createElement('img');
+                img.src = item.photo_url;
+                img.alt = item.caption || 'Foto';
+                img.className = 'gallery-img loading';
+                img.onclick = () => openLightbox(i);
+                img.onload = () => img.classList.remove('loading');
+                img.onerror = () => wrap.style.display = 'none';
+                wrap.appendChild(img);
+                grid.appendChild(wrap);
+            });
+        }
+
+        function openLightbox(i) {
+            currentImageIndex = i;
+            const item = galleryData[i];
+            document.getElementById('lightboxImg').src = item.photo_url;
+            document.getElementById('lightboxCaption').innerHTML = `<div>${item.caption || ''}</div><div class="lightbox-counter">${i+1}/${galleryData.length}</div>`;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() { openLightbox((currentImageIndex + 1) % galleryData.length); }
+        function prevImage() { openLightbox((currentImageIndex - 1 + galleryData.length) % galleryData.length); }
+
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ============ ALBUMS (SMOOTH ANIMATION) ============
+        let albumsData = [];
+
+        async function loadAlbums() {
+            const { rows } = await fetchSheetData('Albums');
+            albumsData = rows;
+            const cats = ['Semua', ...new Set(rows.map(r => r.kategori).filter(Boolean))];
+            const fb = document.getElementById('filterButtons');
+            fb.innerHTML = '';
+            cats.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.textContent = cat;
+                btn.className = 'filter-btn' + (cat === 'Semua' ? ' active' : '');
+                btn.onclick = () => filterAlbums(cat);
+                fb.appendChild(btn);
+            });
+            renderAlbums('Semua');
+        }
+
+        function filterAlbums(cat) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.textContent === cat));
+            renderAlbums(cat);
+        }
+
+        function renderAlbums(cat) {
+            const filtered = cat === 'Semua' ? albumsData : albumsData.filter(a => a.kategori === cat);
+            const grid = document.getElementById('albumsGrid');
+            
+            grid.style.opacity = 0;
+            grid.style.transition = 'opacity 0.25s ease';
+            
+            setTimeout(() => {
+                grid.innerHTML = '';
+                if (!filtered.length) { 
+                    grid.innerHTML = '<div class="empty-state">Belum ada album</div>'; 
+                    grid.style.opacity = 1;
+                    return; 
+                }
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'album-card';
+                    card.style.opacity = 0;
+                    card.style.transform = 'translateY(10px)';
+                    card.style.transition = 'all 0.3s ease';
+
+                    const hasImg = item.thumbnail_url && item.thumbnail_url.startsWith('http');
+                    card.innerHTML = (hasImg
+                        ? `<img src="${item.thumbnail_url}" alt="${item.album_title}" class="album-thumbnail" onerror="this.parentElement.innerHTML='<div class=album-placeholder>📷</div>'">`
+                        : '<div class="album-placeholder">📷</div>')
+                        + `<div class="album-overlay"><div class="album-title">${item.album_title}</div></div>`;
+                    card.onclick = () => { if (item.album_link) window.open(item.album_link, '_blank'); };
+                    grid.appendChild(card);
+
+                    setTimeout(() => {
+                        card.style.opacity = 1;
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                });
+                grid.style.opacity = 1;
+            }, 250);
+        }
+
+        // ============ VIDEOS ============
+        async function loadVideos() {
+            const { rows } = await fetchSheetData('Videos');
+            const grid = document.getElementById('videosGrid');
+            grid.innerHTML = '';
+            if (!rows.length) { grid.innerHTML = '<div class="empty-state">Belum ada video</div>'; return; }
+            rows.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'video-card reveal';
+                card.innerHTML = `
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/${item.video_id}" allowfullscreen loading="lazy"></iframe>
+                    <div class="video-info">
+                        <div class="video-title">${escapeHtml(item.judul || '')}</div>
+                        <div class="video-desc">${escapeHtml(item.deskripsi || '')}</div>
+                    </div>`;
+                grid.appendChild(card);
+            });
+            observeReveals();
+        }
+
+        // ============ YEARBOOK ============
+        async function loadYearbook() {
+            const { rows } = await fetchSheetData('Yearbook');
+            const grid = document.getElementById('yearbookGrid');
+            grid.innerHTML = '';
+            if (!rows.length) { grid.innerHTML = '<div class="empty-state">Belum ada data siswa</div>'; return; }
+            rows.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'yearbook-card reveal';
+                const photo = (item.foto_url && item.foto_url.startsWith('http'))
+                    ? item.foto_url
+                    : 'https://via.placeholder.com/300x300/EBF8FF/2AA8E0?text=?';
+                card.innerHTML = `
+                    <img src="${photo}" alt="${escapeHtml(item.nama || '')}" class="yearbook-photo" onerror="this.src='https://via.placeholder.com/300x300/EBF8FF/2AA8E0?text=?'">
+                    <div class="yearbook-info">
+                        <div class="yearbook-name">${escapeHtml(item.nama || '')}</div>
+                        <div class="yearbook-kelas">${escapeHtml(item.kelas || '')}</div>
+                        <div class="yearbook-cita">${escapeHtml(item.cita_cita || '')}</div>
+                        <div class="yearbook-quote">"${escapeHtml(item.quote || '')}"</div>
+                    </div>`;
+                grid.appendChild(card);
+            });
+            observeReveals();
+        }
+
+        // ============ COMMENT SYSTEM (OPTIMIZED) ============
+        let commentsData = [];
+
+        async function loadComments() {
+            if (CONFIG.GAS_URL) {
+                try {
+                    const response = await fetch(`${CONFIG.GAS_URL}?action=getComments`);
+                    const data = await response.json();
+                    if (data.success && data.comments) {
+                        commentsData = data.comments;
+                        localStorage.setItem('alumni_comments', JSON.stringify(commentsData));
+                        renderComments();
+                        return;
+                    }
+                } catch (e) {
+                    console.warn('GAS fetch failed, fallback localStorage:', e);
+                }
+            }
+            commentsData = JSON.parse(localStorage.getItem('alumni_comments') || '[]');
+            renderComments();
+        }
+
+        function renderComments() {
+            const list = document.getElementById('commentsList');
+            if (!commentsData.length) {
+                list.innerHTML = '<div class="no-comments">Jadilah yang pertama menyapa! 👋</div>';
+                return;
+            }
+            list.innerHTML = '';
+            commentsData.forEach(c => {
+                const initials = (c.nama || 'A').split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+                let repliesHtml = '';
+                if (c.replies && c.replies.length) {
+                    repliesHtml = `<div class="replies">${c.replies.map(r => `
+                        <div class="reply-item">
+                            <div class="reply-header">
+                                <span class="reply-name">${escapeHtml(r.nama)}</span>
+                                <span class="reply-time">${getTimeAgo(r.timestamp)}</span>
+                            </div>
+                            <div class="reply-text">${escapeHtml(r.pesan)}</div>
+                        </div>`).join('')}</div>`;
+                }
+
+                const el = document.createElement('div');
+                el.className = 'comment-item';
+                el.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-avatar">${initials}</div>
+                        <div class="comment-meta">
+                            <div class="comment-name">${escapeHtml(c.nama)}</div>
+                            <div class="comment-kelas">${escapeHtml(c.kelas)}</div>
+                            <div class="comment-time">${getTimeAgo(c.timestamp)}</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">${escapeHtml(c.pesan)}</div>
+                    <button class="reply-btn" onclick="toggleReplyForm('${c.id}')">↩ Balas</button>
+                    <div class="reply-form" id="reply-form-${c.id}">
+                        <div class="reply-form-group">
+                            <input type="text" placeholder="Nama kamu" class="reply-name-input" maxlength="50">
+                        </div>
+                        <div class="reply-form-group">
+                            <textarea placeholder="Tulis balasan..." class="reply-text-input" maxlength="300" rows="2"></textarea>
+                        </div>
+                        <div class="reply-form-buttons">
+                            <button class="reply-submit" onclick="submitReply('${c.id}')">Kirim</button>
+                            <button class="reply-cancel" onclick="toggleReplyForm('${c.id}')">Batal</button>
+                        </div>
+                    </div>
+                    ${repliesHtml}`;
+                list.appendChild(el);
+            });
+        }
+
+        function toggleReplyForm(id) {
+            const f = document.getElementById(`reply-form-${id}`);
+            f.classList.toggle('active');
+            if (f.classList.contains('active')) f.querySelector('.reply-name-input').focus();
+        }
+
+        async function submitComment(e) {
+            e.preventDefault();
+            const nama = document.getElementById('commentName').value.trim();
+            const kelas = document.getElementById('commentKelas').value.trim();
+            const pesan = document.getElementById('commentText').value.trim();
+            if (!nama || !kelas || !pesan) return;
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Mengirim...';
+
+            const comment = {
+                id: Date.now().toString(),
+                nama, kelas, pesan,
+                timestamp: new Date().toISOString(),
+                replies: []
+            };
+
+            let sendSuccess = false;
+            if (CONFIG.GAS_URL) {
+                try {
+                    const result = await sendToGAS(comment);
+                    if (result && result.success) {
+                        showCommentStatus('Pesan terkirim ke database! 🎉', 'success');
+                        sendSuccess = true;
+                    } else {
+                        showCommentStatus('Tersimpan lokal, sinkronisasi segera.', 'success');
+                    }
+                } catch { 
+                    showCommentStatus('Tersimpan lokal, sinkronisasi segera.', 'success'); 
+                }
+            } else {
+                showCommentStatus('Pesan terkirim! 🎉', 'success');
+            }
+
+            if (!sendSuccess) {
+                commentsData.unshift(comment);
+                localStorage.setItem('alumni_comments', JSON.stringify(commentsData));
+                renderComments();
+            }
+
+            document.getElementById('commentForm').reset();
+            document.getElementById('charCount').textContent = '0';
+            btn.disabled = false;
+            btn.textContent = 'Kirim Pesan';
+
+            setTimeout(() => { 
+                showCommentStatus('', ''); 
+                loadComments(); 
+            }, 2000);
+        }
+
+        async function submitReply(commentId) {
+            const form = document.getElementById(`reply-form-${commentId}`);
+            const nama = form.querySelector('.reply-name-input').value.trim();
+            const pesan = form.querySelector('.reply-text-input').value.trim();
+            if (!nama || !pesan) return;
+
+            const comment = commentsData.find(c => c.id === commentId);
+            if (!comment) return;
+            if (!comment.replies) comment.replies = [];
+
+            const reply = { id: Date.now().toString(), nama, pesan, timestamp: new Date().toISOString() };
+            
+            // Masukkan sementara ke lokal agar instan tampil
+            comment.replies.push(reply);
+            localStorage.setItem('alumni_comments', JSON.stringify(commentsData));
+            renderComments();
+
+            if (CONFIG.GAS_URL) {
+                try {
+                    await sendReplyToGAS(reply, commentId);
+                } catch(e) {
+                    console.error("Gagal mengirim balasan ke server:", e);
+                }
+                setTimeout(loadComments, 2000);
+            }
+        }
+
+        async function sendToGAS(comment) {
+            if (!CONFIG.GAS_URL) return null;
+            const url = new URL(CONFIG.GAS_URL);
+            url.searchParams.append('action', 'addComment');
+            url.searchParams.append('nama', comment.nama);
+            url.searchParams.append('kelas', comment.kelas);
+            url.searchParams.append('pesan', comment.pesan);
+            url.searchParams.append('timestamp', comment.timestamp);
+            try {
+                const r = await fetch(url.toString());
+                return await r.json();
+            } catch (e) { console.error('GAS send:', e); return null; }
+        }
+
+        async function sendReplyToGAS(reply, commentId) {
+            if (!CONFIG.GAS_URL) return null;
+            const url = new URL(CONFIG.GAS_URL);
+            url.searchParams.append('action', 'addReply');
+            url.searchParams.append('commentId', commentId);
+            url.searchParams.append('nama', reply.nama);
+            url.searchParams.append('pesan', reply.pesan);
+            url.searchParams.append('timestamp', reply.timestamp);
+            try {
+                const r = await fetch(url.toString());
+                return await r.json();
+            } catch (e) { console.error('GAS reply:', e); return null; }
+        }
+
+        function showCommentStatus(msg, type) {
+            const el = document.getElementById('commentStatus');
+            if (msg) { el.textContent = msg; el.className = `comment-status show ${type}`; }
+            else { el.className = 'comment-status'; }
+        }
+
+        // ============ INIT ============
+        async function initPage() {
+            await loadAbout();
+            await loadGaleri();
+            await loadAlbums();
+            await loadVideos();
+            await loadYearbook();
+            await loadComments();
+            observeReveals();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPage);
+        } else {
+            initPage();
+        }
+
+        // Auto-refresh comments every 30s when tab is visible
+        setInterval(() => {
+            if (document.visibilityState === 'visible') loadComments();
+        }, 30000);
+    </script>
+</body>
+</html>
